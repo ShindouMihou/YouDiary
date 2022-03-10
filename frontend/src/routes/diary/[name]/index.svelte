@@ -3,9 +3,10 @@
     import { marked } from "marked";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
-    import axios from "axios";
+    import { axios } from "../../../requests/ratelimited_axios.svelte";
     import emoji from 'node-emoji';
     import hljs from 'highlight.js';
+    import {encode, trim} from 'url-safe-base64';
 
     // The host credential information.
     let hostname;
@@ -111,7 +112,7 @@
             document.querySelector("#content").classList.remove("hidden");
 
             const response = await axios.get(
-                `${hostname}/${file}.json?bucket=${bucket}`,
+                `${hostname}/${trim(btoa(file))}.json?bucket=${bucket}`,
                 {
                     responseType: "json",
                 }

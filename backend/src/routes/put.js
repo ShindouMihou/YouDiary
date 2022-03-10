@@ -15,7 +15,7 @@ router.put('/:file', (req, res) => {
     const title = sanitize_filename(req.params.file);
     const content = sanitize(req.body.content);
     
-    fs.writeFileSync(`${config.BUCKET_PATH}/${title}.json`, JSON.stringify({
+    fs.writeFileSync(`${config.BUCKET_PATH}/${Buffer.from(title).toString('base64url')}.json`, JSON.stringify({
         title: title,
         content: content
     }));

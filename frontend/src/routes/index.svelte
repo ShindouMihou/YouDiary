@@ -1,8 +1,8 @@
 <script>
     import { onMount } from "svelte";
-    import axios from "axios";
     import Error from "../components/error.svelte";
     import { Beaker, Icon } from "svelte-hero-icons";
+    import { axios } from "../requests/ratelimited_axios.svelte";
 
     // The host credentials if present.
     let hostname;
@@ -23,7 +23,6 @@
             }
 
             const response = await axios.get(`${hostname}/?bucket=${bucket}`);
-
             if (response.status != 200) {
                 error = `The hostname returned a ${response.status} code, is it possible that the bucket is wrong?`;
                 return;

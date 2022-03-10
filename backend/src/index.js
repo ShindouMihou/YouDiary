@@ -10,6 +10,7 @@ const express = require('express');
 const app = express();
 
 app.set('trust proxy', 1);
+app.use(cors());
 app.use(helmet());
 
 const ROUTES = {
@@ -26,8 +27,6 @@ const MIDDLEWARES = {
 if (!fs.existsSync(config.BUCKET_PATH)) {
     fs.mkdirSync(config.BUCKET_PATH);
 }
-
-app.use(cors());
 app.use(MIDDLEWARES.AUTH.ROUTER);
 
 app.use(express.static(config.BUCKET_PATH));

@@ -1,6 +1,6 @@
 const express = require('express');
 const { RateLimiterMemory } = require('rate-limiter-flexible');
-const RATELIMIT_POINTS = 3;
+const RATELIMIT_POINTS = 2;
 const rateLimiter = new RateLimiterMemory({
     points: RATELIMIT_POINTS,
     duration: 1

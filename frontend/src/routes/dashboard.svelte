@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import axios from "axios";
+    import { axios } from "../requests/ratelimited_axios.svelte";
     import {
         Beaker,
         Check,
@@ -138,9 +138,14 @@ X,
             };
 
         } catch (err) {
-            localStorage.removeItem("hostname");
-            localStorage.removeItem("bucket");
+            if (err.message.includes('400')) {
+                localStorage.removeItem("hostname");
+                localStorage.removeItem("bucket");
 
+                document.querySelector("#red_home").click();
+                return;
+            }
+            
             document.querySelector("#red_home").click();
             return;
         }

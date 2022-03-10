@@ -6,7 +6,7 @@ const sanitize_filename = require("sanitize-filename");
 
 router.delete('/:file', (req, res) => {
     try {
-        fs.rmSync(`${config.BUCKET_PATH}/${sanitize_filename(decodeURI(req.params.file))}.json`);
+        fs.rmSync(`${config.BUCKET_PATH}/${Buffer.from(sanitize_filename(decodeURI(req.params.file))).toString('base64url')}.json`);
         return res.send({
             acknowledged: true
         });
