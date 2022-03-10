@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Frontend Docker Image
-      run: docker build frontend/. --file Dockerfile --tag youdiary-client:$(date +%s)
+      run: docker build . --file frontend/Dockerfile --tag youdiary-client:$(date +%s)
     - name: Build the Backend Docker Image
-      run: docker build backend/. --file Dockerfile --tag youdiary-backend:$(date +%s)
+      run: docker build . --file backend/Dockerfile --tag youdiary-backend:$(date +%s)
