@@ -1,4 +1,8 @@
-# 🌉 YouDiary
+![image](https://user-images.githubusercontent.com/69381903/157641361-d49cbd79-b59f-4c6f-8814-79cdf11acace.png)
+
+[![Docker Image CI](https://github.com/ShindouMihou/YouDiary/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ShindouMihou/YouDiary/actions/workflows/docker-image.yml)
+
+
 YouDiary is a simple, web-based markdown text editor that is intended for personal use. This was created for as a little experiment over Node's Filesystem API, bcrypt, sveltekit-adapter-node, marked.js and highlight.js.
 
 # 📦 Installation
