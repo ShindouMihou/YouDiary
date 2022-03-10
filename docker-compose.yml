@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  youdiary_client:
+    container_name: youdiary_client
+    build: frontend/.
+    ports:
+      - 3000:3000
+  
+  youdiary_backend:
+    container_name: youdiary_backend
+    build: backend/.
+    ports:
+      - 2312:2312
+    env_file:
+      - backend/.env
+    volumes:
+      - youdiary-volume
+
+volumes:
+  youdiary-volume:
