@@ -54,7 +54,11 @@ You can now head to `localhost:3000` where you will be greeted with two text fie
 - **Host**: This should be `localhost:2312` by default, unless you reconfigured the port or similar.
 - **Bucket**: The bucket is similar to a secret token that the hoster can see on the console, you should have already noticed it beside the port on the console report, copy the entire bucket text then paste it. In the example case, it would be `JDJiJDEwJEtZeXVlSnpLLkw2ZGtSeEhYVTg5M2UxZEFnL1BrNmdPd2hiUzNYdnBmSm05cm9QYUR3dmxp`.
 
-You can now login and start creating a new page by pressing the `+` symbol where you can type the name of the page and start typing your markdown. To view the markdown preview, you can press the Beaker icon and to save the page, you can press the Save icon. If you want to disable auto-save then just press the Chart icon, it should become non-solid if it is disabled.
+You can now login and start creating a new page by pressing the `+` symbol where you can type the name of the page and start typing your markdown, although, the navigation bar will contain a few icons that might confuse you. Here are the definitions of each icons in the navigation bar on the editor:
+- To enter into markdown preview, you can press the ⚗️ icon.
+- To disable or enable autosave, you can press the 📊 icon.
+- To save the page manually, you can press the 📁 icon.
+- To head back to the dashboard, you can press the 🏠 icon.
 
 # 📚 Previews
 <details>
