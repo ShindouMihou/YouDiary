@@ -33,13 +33,11 @@ jobs:
         with:
           context: frontend/
           push: true
-          tags: youdiary-client:$(date +%s)
-          labels: youdiary-client:$(date +%s)
+          tags: youdiary-client:${{ date +%s }}
           
-      - name: Build Backebnd Docker image
+      - name: Build Backend Docker image
         uses: docker/build-push-action@v2
         with:
           context: backend/
           push: true
-          tags: youdiary-backend:$(date +%s)
-          labels: youdiary-backend:$(date +%s)
+          tags: youdiary-backend:${{ date +%s }}
