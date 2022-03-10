@@ -2,10 +2,11 @@ const express = require('express');
 const fs = require('fs');
 const config = require('../config/bucket');
 const router = express.Router();
+const sanitize_filename = require("sanitize-filename");
 
 router.delete('/:file', (req, res) => {
     try {
-        fs.rmSync(`${config.BUCKET_PATH}/${decodeURI(req.params.file)}.json`);
+        fs.rmSync(`${config.BUCKET_PATH}/${sanitize_filename(decodeURI(req.params.file))}.json`);
         return res.send({
             acknowledged: true
         });

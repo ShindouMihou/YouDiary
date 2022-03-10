@@ -3,6 +3,7 @@ const sanitize = require('sanitize-html');
 const fs = require('fs');
 const config = require('../config/bucket');
 const router = express.Router();
+const sanitize_filename = require("sanitize-filename");
 
 router.put('/:file', (req, res) => {
     if (req.body.content == null) {
@@ -11,7 +12,7 @@ router.put('/:file', (req, res) => {
         });
     }
     
-    const title = req.params.file;
+    const title = sanitize_filename(req.params.file);
     const content = sanitize(req.body.content);
     
     fs.writeFileSync(`${config.BUCKET_PATH}/${title}.json`, JSON.stringify({

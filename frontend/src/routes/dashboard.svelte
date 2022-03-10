@@ -12,6 +12,7 @@ X,
     import Container from "../components/container.svelte";
     import Confirmdelete from "../components/confirmdelete.svelte";
     import Error from "../components/error.svelte";
+    import sanitize from "sanitize-filename";
 
     // The host credentials.
     let hostname;
@@ -67,7 +68,7 @@ X,
      * @param value The new redirection name path, only works for diaries.
      */
     function updateFreeRedirect(value) {
-        freeRedirect = encodeURI(`/diary/${value}`);
+        freeRedirect = encodeURI(`/diary/${sanitize(value)}`);
     }
 
 
