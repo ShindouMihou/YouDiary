@@ -64,6 +64,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>YourDiary | Buckets</title>
+</svelte:head>
+
 <div class="min-h-screen bg-neutral-900 text-white opensans flex" id="loading">
     <div class="m-auto">
         <Icon src={Beaker} solid class="h-12 w-12 animate-bounce" />

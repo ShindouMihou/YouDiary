@@ -6,7 +6,7 @@
     import { axios } from "../../../requests/ratelimited_axios.svelte";
     import emoji from 'node-emoji';
     import hljs from 'highlight.js';
-    import {encode, trim} from 'url-safe-base64';
+    import {trim} from 'url-safe-base64';
 
     // The host credential information.
     let hostname;

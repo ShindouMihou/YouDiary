@@ -145,12 +145,16 @@ X,
                 document.querySelector("#red_home").click();
                 return;
             }
-            
+
             document.querySelector("#red_home").click();
             return;
         }
     });
 </script>
+
+<svelte:head>
+    <title>YourDiary | Dashboard</title>
+</svelte:head>
 
 <div class="min-h-screen bg-neutral-900 text-white opensans flex" id="loading">
     <div class="m-auto">
