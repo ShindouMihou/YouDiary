@@ -21,12 +21,14 @@ const ROUTES = {
 
 const MIDDLEWARES = {
     AUTH: require('./middlewares/auth'),
-    RATELIMIT: require('./middlewares/ratelimit')
+    RATELIMIT: require('./middlewares/ratelimit'),
+    LOG: require('./middlewares/log')
 };
 
 if (!fs.existsSync(config.BUCKET_PATH)) {
     fs.mkdirSync(config.BUCKET_PATH);
 }
+app.use(MIDDLEWARES.LOG);
 app.use(MIDDLEWARES.AUTH.ROUTER);
 
 app.use(express.static(config.BUCKET_PATH));
