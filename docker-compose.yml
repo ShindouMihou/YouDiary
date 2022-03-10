@@ -5,12 +5,14 @@ services:
   youdiary_client:
     container_name: youdiary_client
     build: frontend/.
+    restart: always
     ports:
       - 3000:3000
   
   youdiary_backend:
     container_name: youdiary_backend
     build: backend/.
+    restart: always
     ports:
       - 2312:2312
     env_file:
