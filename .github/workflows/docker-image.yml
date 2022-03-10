@@ -6,15 +6,40 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
-
-  build:
-
+  build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Frontend Docker Image
-      run: docker build frontend/. --tag youdiary-client:$(date +%s)
-    - name: Build the Backend Docker Image
-      run: docker build backend/. --tag youdiary-backend:$(date +%s)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Frontend Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: frontend/
+          push: true
+          tags: youdiary-client:$(date +%s)
+          labels: youdiary-client:$(date +%s)
+          
+      - name: Build Backebnd Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: backend/
+          push: true
+          tags: youdiary-backend:$(date +%s)
+          labels: youdiary-backend:$(date +%s)
