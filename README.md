@@ -31,7 +31,13 @@ BUCKET_PATH=data
 ```bash
 cd ..
 ```
-6. Run docker-compose to build the containers and run them.
+
+6. Create the volume `youdiary-volume` which is separated for persistance-reasons.
+```bash
+docker volume create youdiary-volume
+```
+
+7. Run docker-compose to build the containers and run them.
 ```bash
 docker-compose up
 ```
