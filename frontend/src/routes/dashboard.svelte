@@ -35,7 +35,6 @@ X,
     let deleteMode = false;
     let deletingName = null;
 
-
     /**
      * Logs the user out of the bucket by removing their credential 
      * information from the local storage.

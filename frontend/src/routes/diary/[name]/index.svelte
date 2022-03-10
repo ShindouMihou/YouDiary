@@ -1,5 +1,5 @@
 <script>
-    import { Beaker, Code, Exclamation, Home, Icon, Refresh, SaveAs } from "svelte-hero-icons";
+    import { Beaker, ChartBar, Code, Exclamation, Home, Icon, Refresh, SaveAs } from "svelte-hero-icons";
     import { marked } from "marked";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
@@ -29,6 +29,11 @@
 
     // The error message if any.
     let error;
+
+    // This is used to identify whether we should auto-save the content 
+    // or not.
+    let lastSavedContent;
+    let autoSave = 1;
 
     /**
      * Updates the word count based on the value provided.
@@ -70,6 +75,14 @@
             document.querySelector("#markdown").classList.add("hidden");
         }
     }
+    
+    /**
+     * Enables or disables autosave based on the current state.
+     */
+    function autosave() {
+        autoSave = autoSave === 1 ? 0 : 1;
+        localStorage.setItem('autosave', autoSave);
+    }
 
     /**
      * Saves the content into the database.
@@ -81,7 +94,6 @@
             }
 
             lock = true;
-            document.querySelector("#text").disabled = true;
             const response = await axios.put(
                 `${hostname}/${file}/?bucket=${bucket}`,
                 {
@@ -89,12 +101,13 @@
                 }
             );
 
+            lastSavedContent = value;
             setTimeout(() => {
                 lock = false;
-                document.querySelector("#text").disabled = false;
             }, 250);
         } catch (err) {
-            return;
+            lock = false;
+            error = err.message;
         }
     }
 
@@ -107,6 +120,8 @@
                 document.querySelector("#red_home").click();
                 return;
             }
+
+            autoSave = localStorage.getItem('autosave') ?? 1;
 
             document.querySelector("#loading").classList.add("hidden");
             document.querySelector("#content").classList.remove("hidden");
@@ -127,6 +142,7 @@
             }
 
             value = response.data.content.replace(/&gt;+/g, '>');
+            lastSavedContent = value;
             updateWords(value);
             document.onkeyup = event => {
                 if (event.ctrlKey && event.key === 's') {
@@ -134,6 +150,12 @@
                     save();
                 }
             };
+
+            setInterval(() => {
+                if (autoSave === 1 && value !== lastSavedContent) {
+                    save();
+                }
+            }, 10000);
         } catch (err) {
             if (err.message.includes('404')) {
                 return;
@@ -195,6 +217,9 @@
                     </button>
                     <button on:click={save} aria-label="Save">
                         <Icon src={SaveAs} solid class="h-6 w-6" />
+                    </button>
+                    <button on:click={autosave} aria-label="Autosave">
+                        <Icon src={ChartBar} solid={autoSave === 1 ? true : false} class="h-6 w-6" />
                     </button>
                     <a href="/dashboard" class="text-neutral-500 underline-none">
                         <Icon src={Home} solid class="h-6 w-6"/>
