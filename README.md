@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/69381903/157640251-020c77b0-3e5f-4ece-b8ee-3e061efadd4c.png)
+![image](https://user-images.githubusercontent.com/69381903/157641361-d49cbd79-b59f-4c6f-8814-79cdf11acace.png)
 YouDiary is a simple, web-based markdown text editor that is intended for personal use. This was created for as a little experiment over Node's Filesystem API, bcrypt, sveltekit-adapter-node, marked.js and highlight.js.
 
 # 📦 Installation
