@@ -19,6 +19,7 @@
     "helmet": "^5.0.2",
     "node-cache": "^5.1.2",
     "nodemon": "^2.0.15",
+    "rate-limiter-flexible": "^2.3.6",
     "sanitize-filename": "^1.6.3",
     "sanitize-html": "^2.7.0"
   }

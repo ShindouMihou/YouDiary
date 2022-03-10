@@ -19,7 +19,8 @@ const ROUTES = {
 };
 
 const MIDDLEWARES = {
-    AUTH: require('./middlewares/auth')
+    AUTH: require('./middlewares/auth'),
+    RATELIMIT: require('./middlewares/ratelimit')
 };
 
 if (!fs.existsSync(config.BUCKET_PATH)) {
@@ -34,7 +35,7 @@ app.use(bodyparser.json()).use(bodyparser.urlencoded({
     extended: true
 }));
 
-app.use(ROUTES.DELETE).use(ROUTES.GET).use(ROUTES.PUT);
+app.use(MIDDLEWARES.RATELIMIT).use(ROUTES.GET).use(ROUTES.DELETE).use(ROUTES.PUT);
 
 app.listen(config.BUCKET_PORT, () => {
     console.log(colors.bgBlue(colors.white(colors.bold('YouDiary, Bucketeer'))));
