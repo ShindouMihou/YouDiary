@@ -18,7 +18,11 @@ services:
     env_file:
       - backend/.env
     volumes:
-      - youdiary-volume
+      - youdiary-volume:/usr/src/app/data
+      - youdiary-volume:/usr/src/app/.private
+
+
 
 volumes:
   youdiary-volume:
+    external: true

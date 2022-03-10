@@ -9,17 +9,21 @@ if (config.BUCKET_NAME == undefined) {
     throw new Error('BUCKET_NAME cannot be undefined!');
 }
 
-if (!fs.existsSync('.youdiary')) {
+if (!fs.existsSync('.private/')) {
+    fs.mkdirSync('.private/');
+}
+
+if (!fs.existsSync('.private/.youdiary')) {
     hash = bcrypt.hashSync(config.BUCKET_NAME, bcrypt.genSaltSync(10));
-    fs.writeFileSync('.youdiary', hash);
+    fs.writeFileSync('.private/.youdiary', hash);
 }
 
 if (hash == null) {
-    hash = fs.readFileSync('.youdiary').toString();
+    hash = fs.readFileSync('.private/.youdiary').toString();
 }
 
 if (!bcrypt.compareSync(config.BUCKET_NAME, hash)) {
-    console.error(`The content in .youdiary does not match with the current config.BUCKET_NAME. If you changed the .env file, please delete the .youdiary file and try again.`);
+    console.error(`The content in ./private/.youdiary does not match with the current config.BUCKET_NAME. If you changed the .env file, please delete the .private/.youdiary file and try again.`);
     return;
 }
 
