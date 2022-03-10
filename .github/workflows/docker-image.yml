@@ -32,12 +32,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: frontend/
-          push: true
-          tags: youdiary-client:${{ github.sha }}
+          push: false
           
       - name: Build Backend Docker image
         uses: docker/build-push-action@v2
         with:
           context: backend/
-          push: true
-          tags: youdiary-backend:${{ github.sha }}
+          push: false
